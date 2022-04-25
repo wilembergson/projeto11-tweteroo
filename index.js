@@ -13,19 +13,27 @@ app.post("/sign-up", (req, res)=>{
         username: req.body.username,
         avatar: req.body.avatar
     }
-    users.push(user)
-    res.send("OK")
+    if(user.username === undefined || user.avatar === undefined){
+        res.sendStatus(400)
+    }else{
+        users.push(user)
+        res.send("OK")
+    }
 })
 
 //ENVIAR UM TWEET
 app.post("/tweets", (req, res)=>{
-    const tweet = {
-        username: req.body.username,
-        avatar: req.body.avatar,
-        tweet: req.body.tweet
+    if(req.body.username === undefined || req.body.tweet === undefined){
+        res.sendStatus(400)
+    }else{
+        const tweet = {
+            username: req.body.username,
+            avatar: user.avatar,
+            tweet: req.body.tweet
+        }
+        tweets.push(tweet)
+        res.send("OK")
     }
-    tweets.push(tweet)
-    res.send("OK")
 })
 
 //OBTER OS 10 ULTIMOS TWEETS
