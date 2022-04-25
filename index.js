@@ -13,17 +13,17 @@ app.post("/sign-up", (req, res)=>{
         username: req.body.username,
         avatar: req.body.avatar
     }
-    if(user.username === undefined || user.avatar === undefined){
+    if(user.username === '' || user.avatar === ''){
         res.sendStatus(400)
     }else{
         users.push(user)
-        res.send("OK")
+        res.status(201).send("OK")
     }
 })
 
 //ENVIAR UM TWEET
 app.post("/tweets", (req, res)=>{
-    if(req.body.username === undefined || req.body.tweet === undefined){
+    if(req.body.username === '' || req.body.tweet === ''){
         res.sendStatus(400)
     }else{
         const tweet = {
@@ -32,7 +32,7 @@ app.post("/tweets", (req, res)=>{
             tweet: req.body.tweet
         }
         tweets.push(tweet)
-        res.send("OK")
+        res.status(201).send("OK")
     }
 })
 
